@@ -25,7 +25,22 @@
 <h2>W13</h2>
 <p>由於每個人推送方式不一老師教了token推送</p>
 <h2>W14</h2>
+<p></p>
 <h2>W15</h2>
+<p></p>
+<p># 這個程式用於 demo 綠色方塊沿著特定網格路徑行走<br/># 從 Brython 程式庫中的 browser 模組導入 document 類別, 並以簡寫設定為 doc<br/>from browser import document as doc<br/># 從 browser 模組導入 html 類別, 主要用於建立 CANVAS 標註物件, 並插入頁面中<br/>from browser import html<br/># 用於定時執行特定函式<br/>import browser.timer<br/># 導入亂數模組<br/>from random import random, randint</p>
+<p># 利用 html 建立一個 CANVAS 標註物件, 與變數 canvas 對應<br/>canvas = html.CANVAS(width = 600, height = 600)<br/># 將 canvas 標註的 id 設為 "canvas"<br/>canvas.id = "canvas"<br/># 將 document 中 id 為 "brython_div" 的標註 <br/># 設為與 brython_div 變數對應<br/>brython_div = doc["brython_div1"]<br/># 將 canvas 標註放入 brython_div1 所在位置<br/># 頁面中原本就已經放入 &lt;div id="brython_div"&gt;&lt;/div&gt; 標註<br/>brython_div &lt;= canvas<br/># 將頁面中 id 為 canvas 的 CANVAS 設為與 canvas 變數對應<br/>canvas = doc["canvas"]<br/># 將 canvas 的 2d 繪圖 context 命名為 ctx<br/>ctx = canvas.getContext("2d")</p>
+<p># 建立一個 dRect() 函式<br/># s default 為 1, c defaul 為紅色<br/>def dRect(lux, luy, w, h, s=1, c='#ff0000'):<br/> ctx.lineWidth = s<br/> ctx.strokeStyle = c<br/> ctx.beginPath();<br/> ctx.rect(lux, luy, w, h)<br/> ctx.stroke();<br/> <br/># 建立畫直線函式<br/>def draw_line(x1, y1, x2, y2, color="#ff0000"):<br/> ctx.beginPath()<br/> ctx.moveTo(x1, y1)<br/> ctx.lineTo(x2, y2)<br/> ctx.strokeStyle = color<br/> ctx.stroke()</p>
+<p># 建立 write Text 函式<br/>def wText(x, y, t, s=14, c='#0000ff'):<br/> ctx.font = str(s) + "px Arial";<br/> ctx.fillText(t, x, y)</p>
+<p># 定義畫格線的函式<br/>def grid(startx, starty, w, h, wnum, hnum, pixel=1, color="#ff0000"):<br/> # 利用迴圈與座標增量繪圖<br/> # 因為輸入 wnum 與 hnum 為格子數, 畫格線數則需加上 1<br/> for i in range(wnum+1):<br/> for j in range(hnum+1):<br/> # 畫上下直線<br/> yend = starty + h*(hnum)<br/> xend = startx + w*(wnum)<br/> x = startx + i*w<br/> draw_line(x, starty, x, yend, color)<br/> # 畫左右直線<br/> y = starty + j*h<br/> draw_line(startx, y, xend, y, color)<br/> #wText(w/2-10, y-w/2, str(j))</p>
+<p># 從兩個座標點求中心點座標<br/>def center(lx, ly, rx, ry):<br/> # lx is x coord of the left up corner<br/> # rx is the x coord of th right down corner<br/> x = (lx + rx)/2<br/> y = (ly + ry)/2<br/> return x, y<br/> <br/># 畫出填色方塊<br/>def draw_rect(gx, gy, gw, gh, color="lime"):<br/> # gx is the grid coord at x direction<br/> # gy is the grid coord at y direction<br/> # gw is the with of the green rect<br/> # gh is the height of the green rect<br/> lx = origx + (gx-1)*w<br/> ly = origy + (gy-1)*h<br/> rx = origx + gx*w<br/> ry = origy + gy*h<br/> cx, cy = center(lx, ly, rx, ry)<br/> # glx is the x coord of the left corner<br/> # gly is the y coord of the left corner<br/> glx = cx - gw/2<br/> gly = cy - gh/2<br/> # 利用設定的顏色值畫出 rectangle<br/> ctx.fillStyle = color<br/> ctx.fillRect(glx, gly, gw, gh)</p>
+<p># 以白色覆蓋位於 (nowx, nowy) <br/># 且比目標方塊長寬各大於 1 pixel的方塊<br/>def wipe():<br/> draw_rect(nowx, nowy, 30+1, 30+1, color="white")</p>
+<p># 畫出位於 (nowx, nowy) 的綠色方塊<br/>def draw():<br/> draw_rect(nowx, nowy, 30, 30, color="lime")</p>
+<p># 繞著外圍行走<br/>def walk():<br/> global stepx, stepy<br/> # 向下<br/> if nowy &lt; hnum and nowx == 1:<br/> stepx = 0<br/> stepy = 1<br/> # 向右<br/> elif nowx &lt; wnum and nowy == hnum:<br/> stepx = 1<br/> stepy = 0<br/> # 向上<br/> elif nowy == hnum and nowx == wnum:<br/> stepx = 0<br/> stepy = -1<br/> # 向左<br/> elif nowx == wnum and nowy == 1:<br/> stepx = -1<br/> stepy = 0<br/> <br/># 每隔短暫時間即呼叫執行一次的函式<br/>def game():<br/> # 因 nowx 與 nowy 在函式外宣告<br/> # 且在函式內改變對應值, 因此需宣告為 global<br/> global nowx, nowy<br/> walk()<br/> wipe()<br/> nowx += stepx<br/> nowy += stepy<br/> draw()</p>
+<p># 綠色方塊起點座標與 x 及 y 方向的座標增量<br/>nowx = 1<br/>nowy = 1<br/>stepx = 0<br/>stepy = 0<br/># 設定格數<br/># width 方向格子數<br/>wnum = 15<br/># height 方向格子數<br/>hnum = 15<br/># 設定線寬<br/>pixel = 1<br/># 設定 w 寬度<br/>w = int(canvas.width/wnum) - pixel<br/># 設定 h 高度<br/>h = int(canvas.height/hnum) - pixel<br/># 設定繪圖座標點起點位置<br/>origx = 1<br/>origy = 1<br/># 利用 grid 函式畫出格線<br/>grid(origx, origy, w, h, wnum, hnum, pixel=1, color="black")</p>
+<p>'''<br/># 利用 draw_rect 以 grid 座標畫出正方形, 內建為 lime<br/>draw_rect(3, 3, 30, 30)</p>
+<p># 利用隨機亂數產生五個紅色方塊<br/># wnum 與 hnum 為 x 與 y 方向的格子個數<br/># w 與 h 方向上的方塊 pixel 數<br/>wrect_size = 30<br/>hrect_size = 30<br/># 利用 for 迴圈產生五個紅色方塊<br/>for i in range(5):<br/> xcoord = randint(1, wnum)<br/> ycoord = randint(1, hnum)<br/> draw_rect(xcoord, ycoord, wrect_size, hrect_size, color="red")<br/>'''<br/>browser.timer.set_interval(game, 100)</p>
+<p></p>
 <p></p>
 <h1>常用網站</h1>
 <p>推倉儲 <a href="https://replit.com/">https://replit.com/</a></p>
