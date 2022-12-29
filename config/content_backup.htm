@@ -42,8 +42,127 @@
 <p></p>
 <p></p>
 <h2>w3</h2>
-<h2>w4</h2>
-<h2>w5</h2>
+<p></p>
+<p><strong>網誌與課程內容回顧</strong></p>
+<p>教學影片:<span> </span><a href="https://nfuedu.sharepoint.com/:v:/r/sites/cp20222/Shared%20Documents/w3/Recordings/2%E3%80%8Cw3%E3%80%8D%E8%AA%B2%E7%A8%8B%E7%B6%B2%E8%AA%8C%E8%A3%BD%E4%BD%9C%E8%88%87%E5%85%88%E5%89%8D%E8%AA%B2%E7%A8%8B%E5%85%A7%E5%AE%B9%E5%9B%9E%E9%A1%A7.mp4?csf=1&amp;web=1&amp;e=jHsQ7E">課程網誌製作與先前課程內容回顧</a></p>
+<p></p>
+<p><strong>倉儲與 Github Pages</strong></p>
+<p>教學影片:<span> </span><a href="https://nfuedu.sharepoint.com/:v:/r/sites/cp20222/Shared%20Documents/w3/Recordings/4%E3%80%8Cw3%E3%80%8D%E8%AA%B2%E7%A8%8B%E5%80%89%E5%84%B2%E8%88%87%20Github%20Pages%20%E7%B6%B2%E9%A0%81%E8%A8%AD%E5%AE%9A%E6%95%99%E5%AD%B8.mp4?csf=1&amp;web=1&amp;e=5brhmf">課程倉儲與 Github Pages 網頁設定教學</a></p>
+<p></p>
+<h3>從教務主機擷取學員名單</h3>
+<p>原先配置在 Heroku 的 [nfulist] 網際程式, 由於校務主機已經排除台灣境外網段連接, 且 Heroku 也即將終止免費帳號使用. 因此只能將程式配置在系工作站室中的電腦. 程式如下, 目前以 Ubuntu 22.04 實體主機下的 Virtualbox Win10 虛擬主機運行. 採<span> </span><a href="https://github.com/Pylons/waitress">waitress</a><span> </span>模式配置, 以<span> </span><a href="https://nssm.cc/">nssm</a><span> </span>安排成為系統服務.</p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false"># 以 Flask 作為網際框架, 
+from flask import Flask, request
+# 允許跨網站擷取資料
+from flask_cors import CORS
+ 
+# 利用 requests 取回網站中的頁面資料
+import requests
+# 利用 beautifulsoup 解讀超文件網頁內容
+import bs4
+# 若在近端啟動也要採用 SSL 時導入
+#import ssl
+ 
+'''
+2022 Fall 各班課程代號
+1a - 2b
+?semester=1111&amp;courseno=0747&amp;column=True 
+ 
+?semester=1111&amp;courseno=0761&amp;column=True 
+ 
+?semester=1111&amp;courseno=0773&amp;column=True 
+ 
+?semester=1111&amp;courseno=0786&amp;column=True 
+ 
+'''
+proxies ={
+'http': 'http://account:password@[2001:288:6004:17::4]:3128',
+'https': 'http://account:password@[2001:288:6004:17::4]:3128'
+}
+ 
+app = Flask(__name__)
+CORS(app)
+ 
+@app.route('/studlist')
+@app.route('/')
+def studlist():
+    semester = request.args.get('semester')
+    courseno = request.args.get('courseno')
+    column = request.args.get('column')
+ 
+    if semester == None:
+        semester = '1091'
+    if courseno == None:
+        courseno = '0762'
+ 
+    headers = {'X-Requested-With': 'XMLHttpRequest'}
+ 
+    url = 'https://qry.nfu.edu.tw/studlist_ajax.php'
+    post_var = {'pselyr': semester, 'pseqno': courseno}
+ 
+    # 可透過 Proxy server 執行程式
+    #result = requests.post(url, data = post_var, headers = headers, proxies = proxies)
+    result = requests.post(url, data = post_var, headers = headers)
+    soup = bs4.BeautifulSoup(result.content, 'lxml')
+    table = soup.find('table', {'class': 'tbcls'})
+    data = []
+    rows = table.find_all('tr')
+    for row in rows:
+        cols = row.find_all('td')
+        cols = [ele.text.strip() for ele in cols]
+        data.append([ele for ele in cols if ele]) # Get rid of empty values
+    output = ""
+    for i in data[2:]:
+        #print(i[0])
+        if column == "True":
+            output +=i[0] + "&lt;br&gt;"
+        else:
+            output +=i[0] + "\n"
+ 
+    return output
+    #return  str(pselyr) + " + " +str(pseqno)
+ 
+# 即使在近端仍希望以 https 模式下執行
+#context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
+#context.load_cert_chain('localhost.crt', 'localhost.key')
+ 
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port=8080, debug=True)</pre>
+<p></p>
+<p><a href="https://nfu.cycu.org/?semester=1111&amp;courseno=0747&amp;column=True">1a 計算機程式修課學員名單</a><span> </span>(取自教務主機)</p>
+<p></p>
+<p></p>
+<p></p><h2>w4</h2>
+<p></p>
+<p>git token 與 SSH 使用, Brython 抽點程式</p>
+<p></p>
+<p>我原先參考上面影片，但是遲遲沒有把SSH建立成功，是因為config裡面修正錯誤，建立在自己的倉儲下</p>
+<p></p>
+<p></p>
+<p>網路設定與可攜檔案下載</p>
+<p></p>
+<p>後來是用replit 這個網站才推送成功，我覺得這個網站很方便，不用隨時攜帶隨身碟就可以操作</p>
+<p>但是操作前ˊ要先去老師的下載區下載檔案</p>
+<p></p>
+<br/><br/><br/><strong><span data-contrast="auto">該如何學習 Computer Programming</span></strong><span> </span>
+<p><span data-contrast="auto"><span>進入電腦輔助設計室之後:</span></span><span> </span></p>
+<ol>
+<li data-aria-level="2" data-aria-posinset="1"><span data-contrast="auto"><span>登入 </span></span><a href="https://github.com"><span data-contrast="auto"><span>Github</span></span></a><span data-contrast="auto"><span> </span></span><span> </span></li>
+<li data-aria-level="2" data-aria-posinset="2"><span data-contrast="auto"><span>登入 </span></span><a href="https://onedrive.live.com/about/en-us/signin"><span data-contrast="auto"><span>Onedrive</span></span></a><span> </span></li>
+<li data-aria-level="2" data-aria-posinset="3"><span data-contrast="auto"><span>登入 </span></span><a href="https://replit.com"><span data-contrast="auto"><span>Replit</span></span></a><span> </span></li>
+</ol>
+<p><span> </span></p>
+<p><span data-contrast="auto"><span>進入個人的課程倉儲: </span></span><a href="https://github.com/mdecp2022"><span data-contrast="auto"><span>https://github.com/mdecp2022</span></span></a><span data-contrast="auto"><span> </span></span><span> </span></p>
+<p><span data-contrast="auto"><span>將 Github 倉儲連結, 作為 import Replit 的 URL, 建立一個新的 Repl 專案.</span></span><span> </span></p>
+<p><span data-contrast="auto"><span>中英文打字技巧必須自行練習.</span></span><span> </span></p>
+<p><span data-contrast="auto"><span>幾乎所有的電腦指令都源自英文單字, 因此在學習與電腦有關的過程, 千萬不要在瀏覽器中, 將英文翻譯成中文.</span></span><span> </span></p>
+<p><span data-contrast="auto"><span>儘量參考英文原版資料, 碰到英文單字要自行查詢線上</span></span><a href="https://www.merriam-webster.com/"><span data-contrast="auto"><span>英英字典</span></span></a><span data-contrast="auto"><span>與</span></span><a href="https://dictionary.cambridge.org/zht/"><span data-contrast="auto"><span>英漢字典</span></span></a><span data-contrast="auto"><span>, 充分了解原意.</span></span><span> </span></p>
+<p><span data-contrast="auto"><span>電腦開機後的所有動作與流程, 都是硬體 + 韌體 + 軟體 + 使用者操作綜合下所得到的結果, 學習 Computer Programming, 必須要提高好奇心, 探索特定操作下所牽涉的  hardware, firmware, software and users 之間的關聯.</span></span><span> </span></p>
+<p><span data-contrast="auto"><span>在無法對 </span></span><span data-contrast="auto"><span>hardware, firmware 與 software  進行修改之前, 使用者幾乎都是透過設定達到符合使用需求的目的.</span></span><span> </span></p>
+<p><span></span></p>
+<p><span data-contrast="auto"><span>學習 Computer Programming 的目的, 即在針對 </span></span><span data-contrast="auto"><span>hardware, firmware 與 software  的設定之外, 自行涉入與 </span></span><span data-contrast="auto"><span>hardware, firmware 與 software 有關的內容建置或配置.</span></span><span> </span></p>
+<p><span></span></p>
+<p><span></span></p><h2>w5</h2>
 <h2>w6</h2>
 <h2>w7</h2>
 <h2>w8</h2>
