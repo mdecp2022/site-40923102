@@ -132,7 +132,8 @@ if __name__ == '__main__':
 <p><a href="https://nfu.cycu.org/?semester=1111&amp;courseno=0747&amp;column=True">1a 計算機程式修課學員名單</a><span> </span>(取自教務主機)</p>
 <p></p>
 <p></p>
-<p></p><h2>w4</h2>
+<p></p>
+<h2>w4</h2>
 <p></p>
 <p>git token 與 SSH 使用, Brython 抽點程式</p>
 <p></p>
@@ -144,7 +145,7 @@ if __name__ == '__main__':
 <p>後來是用replit 這個網站才推送成功，我覺得這個網站很方便，不用隨時攜帶隨身碟就可以操作</p>
 <p>但是操作前ˊ要先去老師的下載區<a href="https://mdecp2022.github.io/site-40923102/content/%E5%B8%B8%E7%94%A8%E7%B6%B2%E7%AB%99.html">下載檔案</a></p>
 <p></p>
-<br/><br/>該如何學習 Computer Programming <br/><br/>
+<p><br/><br/><br/><strong>該如何學習 Computer Programming </strong><br/><br/></p>
 <p><span data-contrast="auto"><span>進入電腦輔助設計室之後:</span></span><span> </span></p>
 <ol>
 <li data-aria-level="2" data-aria-posinset="1"><span data-contrast="auto"><span>登入 </span></span><a href="https://github.com"><span data-contrast="auto"><span>Github</span></span></a><span data-contrast="auto"><span> </span></span><span> </span></li>
@@ -162,11 +163,12 @@ if __name__ == '__main__':
 <p><span></span></p>
 <p><span data-contrast="auto"><span>學習 Computer Programming 的目的, 即在針對 </span></span><span data-contrast="auto"><span>hardware, firmware 與 software  的設定之外, 自行涉入與 </span></span><span data-contrast="auto"><span>hardware, firmware 與 software 有關的內容建置或配置.</span></span><span> </span></p>
 <p><span></span></p>
-<p><span></span></p><h2>w5</h2>
+<p><span></span></p>
+<h2>w5</h2>
 <p></p>
 <div><span style="color: #ff0000;">w5 起除了 <a href="https://wcms.repl.co" rel="noreferrer noopener" style="color: #ff0000;" tabindex="-1" target="_blank" title="https://wcms.repl.co/">https://wcms.repl.co</a> 我們自架了一台伺服器 <a href="https://wcms.cycu.org:5443" rel="noreferrer noopener" style="color: #ff0000;" tabindex="-1" target="_blank" title="https://wcms.cycu.org:5443/">https://wcms.cycu.org:5443</a> 理論上兩台主機內容與 <a href="https://github.com/mdecycu/wcms" rel="noreferrer noopener" style="color: #ff0000;" tabindex="-1" target="_blank" title="https://github.com/mdecycu/wcms">https://github.com/mdecycu/wcms</a> 倉儲同步.</span></div>
 <div><span style="color: #ff0000;"></span></div>
-<h3><span style="color: #000000;">密碼產生器</span></h3>
+<h3>密碼產生器</h3>
 <div>
 <div>以下利用 Python 建立一個密碼產生程式, 而此連結是將程式碼以 <a href="https://docs.github.com/en/get-started/writing-on-github/editing-and-sharing-content-with-gists/creating-gists" rel="noreferrer noopener" tabindex="-1" target="_blank" title="https://docs.github.com/en/get-started/writing-on-github/editing-and-sharing-content-with-gists/creating-gists">Github Gist</a> 格式儲存, 其結果就是 <a href="https://gist.githubusercontent.com/mdecycu/2c6323eff49b496d1bafd210f3ec9707/raw/8864b4178c8ec64f60d30014d3ab743499d51be4/password_generator.py" rel="noreferrer noopener" tabindex="-1" target="_blank" title="https://gist.githubusercontent.com/mdecycu/2c6323eff49b496d1bafd210f3ec9707/raw/8864b4178c8ec64f60d30014d3ab743499d51be4/password_generator.py">password_generator.py</a> 程式, 而這個程式碼隸屬於<a href="https://gist.github.com/mdecycu/2c6323eff49b496d1bafd210f3ec9707" rel="noreferrer noopener" tabindex="-1" target="_blank" title="https://gist.github.com/mdecycu/2c6323eff49b496d1bafd210f3ec9707">這個 Gist</a>, 當使用者登入 Github 後, 就可以進入 Gist 區建立具備版次管理架構的程式內容, Gist 與 Repository 相同, 也是採 Git 倉儲架構, 當使用者每次對 Gist 更新或加入程式碼後, 每一個 Gist 都會產生一組代表版次號碼的字串, 使用者就可以根據此字串, 利用瀏覽器擷取到此段程式碼, 例如: 可以透過 <a href="https://gist.githubusercontent.com/mdecycu/2c6323eff49b496d1bafd210f3ec9707/raw/8864b4178c8ec64f60d30014d3ab743499d51be4/password_generator.py" rel="noreferrer noopener" tabindex="-1" target="_blank" title="https://gist.githubusercontent.com/mdecycu/2c6323eff49b496d1bafd210f3ec9707/raw/8864b4178c8ec64f60d30014d3ab743499d51be4/password_generator.py">password_generator.py</a> 取得亂數密碼的程式, 然後在 Brython 頁面中, 再透過 URL 的變數 src 對應此 Gist 程式網址, 就可以透過 javascript 與 Brython 的整合, 將符合 Brython 規範的 Python 程式放入網頁中執行.</div>
 <div><a href="https://mde.tw/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/2c6323eff49b496d1bafd210f3ec9707/raw/8864b4178c8ec64f60d30014d3ab743499d51be4/password_generator.py" rel="noreferrer noopener" tabindex="-1" target="_blank" title="https://mde.tw/content/brython.html?src=https://gist.githubusercontent.com/mdecycu/2c6323eff49b496d1bafd210f3ec9707/raw/8864b4178c8ec64f60d30014d3ab743499d51be4/password_generator.py">password generator</a>,</div>
@@ -190,7 +192,28 @@ pass_string = "abcdefghkmnpqrstuwxyz123456789"
 for i in range(10):
     print(password_generator(4, pass_string))</pre>
 </div>
-</div><h2>w6</h2>
+</div>
+<h3>利用SSH對倉儲內容改版</h3>
+<p></p>
+<ol>
+<li data-aria-level="1" data-aria-posinset="1"><span data-contrast="auto"><span>所謂 Secure Shell 就是利用</span></span><a href="https://zh.m.wikipedia.org/zh-tw/%E5%85%AC%E5%BC%80%E5%AF%86%E9%92%A5%E5%8A%A0%E5%AF%86"><span data-contrast="auto"><span>公開金鑰加密</span></span></a><span data-contrast="auto"><span>, 在傳輸指令的過程對內容加密, 以保障資訊不被第三方取得, 當使用者在近端執行個人倉儲的動態網站後進行編輯改版, 並將動態網站轉為靜態網站, 希望將新的靜態網站內容送到 Github Pages  中的過程, 可以透過 SSH 協定建立一對數位鑰匙, 其公開鑰匙登錄到 Github SSH 設定區, 而私人鑰匙則放在近端電腦或隨身碟中, 當推送資料時只有與帳號下公鑰配對的私鑰擁有者, 有權限更改倉儲內容, 以下為在 Windows 操作系統採 SSH 對 Github 倉儲進行改版的設定過程.</span></span><span> </span></li>
+<li data-aria-level="1" data-aria-posinset="2"><span data-contrast="auto"><span>確定  start.bat 啟動時已經設定 GIT_SSH 變數, 且與 plink.exe 連結, 表示設定之後的 Git  指令, 若採 SSH 協定與 Github 溝通, 近端的金鑰加密格式採用 Putty 所提供的 ppk 格式.</span></span><span> </span></li>
+<li data-aria-level="1" data-aria-posinset="3"><span data-contrast="auto"><span>在 Windows 操作系統, 可以</span></span><span data-contrast="auto"><span>利用 Putty 的 puttygen.exe 產生 public key (OpenSSH 格式, 可登錄到 Github) 與 private key (ppk 格式), 且將 public key 放入 Github 帳號下 settings -&gt; SSH and GPG 設定區.</span></span><span> </span></li>
+<li data-aria-level="1" data-aria-posinset="4"><span data-contrast="auto"><span>將 private key 存入隨身碟或 C 槽後,  送到自己的 onedrive 區, 當設定  putty.exe session 時必須在 session 使用授權區給定私鑰儲存位置.</span></span><span> </span></li>
+<li data-aria-level="1" data-aria-posinset="5"><span data-contrast="auto"><span>利用 putty.exe 在電腦上設定一個 session 名稱, 且此一 session 名稱,</span></span><span data-contrast="auto"><span>代表三項資訊: a. 以 SSH  協定連結到 github.com (default port 為 22),  b. 決定需不需要使用 proxy (github.com 目前僅支援 IPv4), c. ppk 格式的 private key 位置.</span></span><span> </span></li>
+</ol>
+<p><span> </span></p>
+<p><span data-contrast="auto"><span>利用 Putty session 以 SSH 協定 git clone 遠端倉儲, 假如前述設定都正確的話, 就可以在近端改版後, 將版本推向 Github.</span></span><span> </span></p>
+<p><span> </span></p>
+<p><span data-contrast="auto"><span>SSH  從 Github git clone  語法:</span></span><span> </span></p>
+<p><span> </span></p>
+<p><span data-contrast="auto"><span>git clone  --recurse-submodules  </span></span><a href="mailto:git@putty_session_name:github_account/repository_name.git"><span data-contrast="auto"><span>git@putty_session_name:github_account/repository_name.git</span></span></a><span> </span></p>
+<p><span></span></p>
+<p><strong><span class="TextRun BCX2 SCXO166627578" data-contrast="auto" lang="ZH-TW" xml:lang="ZH-TW"><span class="NormalTextRun BCX2 SCXO166627578">請特別注意  putty_session_name 與  github_account 中間</span></span></strong></p>
+<p></p>
+<p></p>
+<p></p>
+<h2>w6</h2>
 <h2>w7</h2>
 <h2>w8</h2>
 <h2>w9</h2>
@@ -397,7 +420,8 @@ browser.timer.set_interval(game, 100)</pre>
 <p>利用 Github 建立網頁:</p>
 <p><a href="https://pages.github.com/">https://pages.github.com/</a></p>
 <p></p>
-<p></p><h1>Brython</h1>
+<p></p>
+<h1>Brython</h1>
 <p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">https://en.wikipedia.org/wiki/Python_(programming_language)</a></p>
 <h4>Examples:</h4>
 <p style="padding-left: 30px;"><a href="https://gist.github.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d">https://gist.github.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d</a></p>
