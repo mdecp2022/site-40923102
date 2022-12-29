@@ -2,7 +2,7 @@
         <head>
         <title>cmsite</title>
         <meta charset="utf-8">
-<meta property="head" content="H1">
+<meta property="head" content="H3">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
@@ -141,8 +141,31 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">About << <a href='About.html'>Previous</a> <a href='評分標準.html'>Next</a> >> 評分標準<br /><h1>課程相關</h1>
-<br />About << <a href='About.html'>Previous</a> <a href='評分標準.html'>Next</a> >> 評分標準</div>
+    <div id="tipue_search_content">w5 << <a href='w5.html'>Previous</a> <a href='w6.html'>Next</a> >> w6<br /><h1>密碼產生器</h1>
+<div>
+<div>以下利用 Python 建立一個密碼產生程式, 而此連結是將程式碼以 <a href="https://docs.github.com/en/get-started/writing-on-github/editing-and-sharing-content-with-gists/creating-gists" rel="noreferrer noopener" tabindex="-1" target="_blank" title="https://docs.github.com/en/get-started/writing-on-github/editing-and-sharing-content-with-gists/creating-gists">Github Gist</a> 格式儲存, 其結果就是 <a href="https://gist.githubusercontent.com/mdecycu/2c6323eff49b496d1bafd210f3ec9707/raw/8864b4178c8ec64f60d30014d3ab743499d51be4/password_generator.py" rel="noreferrer noopener" tabindex="-1" target="_blank" title="https://gist.githubusercontent.com/mdecycu/2c6323eff49b496d1bafd210f3ec9707/raw/8864b4178c8ec64f60d30014d3ab743499d51be4/password_generator.py">password_generator.py</a> 程式, 而這個程式碼隸屬於<a href="https://gist.github.com/mdecycu/2c6323eff49b496d1bafd210f3ec9707" rel="noreferrer noopener" tabindex="-1" target="_blank" title="https://gist.github.com/mdecycu/2c6323eff49b496d1bafd210f3ec9707">這個 Gist</a>, 當使用者登入 Github 後, 就可以進入 Gist 區建立具備版次管理架構的程式內容, Gist 與 Repository 相同, 也是採 Git 倉儲架構, 當使用者每次對 Gist 更新或加入程式碼後, 每一個 Gist 都會產生一組代表版次號碼的字串, 使用者就可以根據此字串, 利用瀏覽器擷取到此段程式碼, 例如: 可以透過 <a href="https://gist.githubusercontent.com/mdecycu/2c6323eff49b496d1bafd210f3ec9707/raw/8864b4178c8ec64f60d30014d3ab743499d51be4/password_generator.py" rel="noreferrer noopener" tabindex="-1" target="_blank" title="https://gist.githubusercontent.com/mdecycu/2c6323eff49b496d1bafd210f3ec9707/raw/8864b4178c8ec64f60d30014d3ab743499d51be4/password_generator.py">password_generator.py</a> 取得亂數密碼的程式, 然後在 Brython 頁面中, 再透過 URL 的變數 src 對應此 Gist 程式網址, 就可以透過 javascript 與 Brython 的整合, 將符合 Brython 規範的 Python 程式放入網頁中執行.</div>
+<div><a href="https://mde.tw/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/2c6323eff49b496d1bafd210f3ec9707/raw/8864b4178c8ec64f60d30014d3ab743499d51be4/password_generator.py" rel="noreferrer noopener" tabindex="-1" target="_blank" title="https://mde.tw/content/brython.html?src=https://gist.githubusercontent.com/mdecycu/2c6323eff49b496d1bafd210f3ec9707/raw/8864b4178c8ec64f60d30014d3ab743499d51be4/password_generator.py">password generator</a>,</div>
+<div></div>
+<div>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false"># 導入亂數模組
+import random
+# 導入字串模組
+import string
+# 利用 def 關鍵字定義函式
+# 函式的輸入變數可以設定初始值
+def password_generator(size=4, chars=string.ascii_lowercase + string.digits):
+    # 函式內以多行註解說明函式功能
+    """Generate random password
+    """
+    # 利用 return 關鍵字將所產生的亂數字串傳回
+    return ''.join(random.choice(chars) for _ in range(size))
+# 建立一個變數與隨後的字串對應
+pass_string = "abcdefghkmnpqrstuwxyz123456789"
+# 利用重複迴圈呼叫 password_generator() 函式 10 次
+for i in range(10):
+    print(password_generator(4, pass_string))</pre>
+</div>
+</div><br />w5 << <a href='w5.html'>Previous</a> <a href='w6.html'>Next</a> >> w6</div>
         
     <!-- footer -->
       <div class="container">
