@@ -2,7 +2,7 @@
         <head>
         <title>cmsite</title>
         <meta charset="utf-8">
-<meta property="head" content="H2">
+<meta property="head" content="H3">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
@@ -141,21 +141,90 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">課程相關 << <a href='課程相關.html'>Previous</a> <a href='每周筆記(期中).html'>Next</a> >> 每周筆記(期中)<br /><h1>評分標準</h1>
-<p>w3 建立<span> </span><a href="https://tcexam.org/">TCExam</a><span> </span>帳號, 進行模擬考試.</p>
-<p>w4 Exam1 (5%)</p>
-<p>w8 Exam2 (5%)</p>
-<p>w9 Exam3 (5%)</p>
-<p>w12 Exam4 (5%)</p>
-<p>w16 Exam5 (5%)</p>
-<p>w18 Exam6 (5%)</p>
-<p>Github Repository and Pages (70%)</p>
-<p>個人簡歷與課程進度心得</p>
-<p>課程內容操作影片 (<a href="https://www.debugmode.com/wink/">Wink3</a>)</p>
-<p>期中程式專案</p>
-<p>期末程式專案</p>
+    <div id="tipue_search_content">w3 << <a href='w3.html'>Previous</a> <a href='w4.html'>Next</a> >> w4<br /><h1>從教務主機擷取學員名單</h1>
+<p>原先配置在 Heroku 的 [nfulist] 網際程式, 由於校務主機已經排除台灣境外網段連接, 且 Heroku 也即將終止免費帳號使用. 因此只能將程式配置在系工作站室中的電腦. 程式如下, 目前以 Ubuntu 22.04 實體主機下的 Virtualbox Win10 虛擬主機運行. 採<span> </span><a href="https://github.com/Pylons/waitress">waitress</a><span> </span>模式配置, 以<span> </span><a href="https://nssm.cc/">nssm</a><span> </span>安排成為系統服務.</p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false"># 以 Flask 作為網際框架, 
+from flask import Flask, request
+# 允許跨網站擷取資料
+from flask_cors import CORS
+ 
+# 利用 requests 取回網站中的頁面資料
+import requests
+# 利用 beautifulsoup 解讀超文件網頁內容
+import bs4
+# 若在近端啟動也要採用 SSL 時導入
+#import ssl
+ 
+'''
+2022 Fall 各班課程代號
+1a - 2b
+?semester=1111&amp;courseno=0747&amp;column=True 
+ 
+?semester=1111&amp;courseno=0761&amp;column=True 
+ 
+?semester=1111&amp;courseno=0773&amp;column=True 
+ 
+?semester=1111&amp;courseno=0786&amp;column=True 
+ 
+'''
+proxies ={
+'http': 'http://account:password@[2001:288:6004:17::4]:3128',
+'https': 'http://account:password@[2001:288:6004:17::4]:3128'
+}
+ 
+app = Flask(__name__)
+CORS(app)
+ 
+@app.route('/studlist')
+@app.route('/')
+def studlist():
+    semester = request.args.get('semester')
+    courseno = request.args.get('courseno')
+    column = request.args.get('column')
+ 
+    if semester == None:
+        semester = '1091'
+    if courseno == None:
+        courseno = '0762'
+ 
+    headers = {'X-Requested-With': 'XMLHttpRequest'}
+ 
+    url = 'https://qry.nfu.edu.tw/studlist_ajax.php'
+    post_var = {'pselyr': semester, 'pseqno': courseno}
+ 
+    # 可透過 Proxy server 執行程式
+    #result = requests.post(url, data = post_var, headers = headers, proxies = proxies)
+    result = requests.post(url, data = post_var, headers = headers)
+    soup = bs4.BeautifulSoup(result.content, 'lxml')
+    table = soup.find('table', {'class': 'tbcls'})
+    data = []
+    rows = table.find_all('tr')
+    for row in rows:
+        cols = row.find_all('td')
+        cols = [ele.text.strip() for ele in cols]
+        data.append([ele for ele in cols if ele]) # Get rid of empty values
+    output = ""
+    for i in data[2:]:
+        #print(i[0])
+        if column == "True":
+            output +=i[0] + "&lt;br&gt;"
+        else:
+            output +=i[0] + "\n"
+ 
+    return output
+    #return  str(pselyr) + " + " +str(pseqno)
+ 
+# 即使在近端仍希望以 https 模式下執行
+#context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
+#context.load_cert_chain('localhost.crt', 'localhost.key')
+ 
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port=8080, debug=True)</pre>
 <p></p>
-<br />課程相關 << <a href='課程相關.html'>Previous</a> <a href='每周筆記(期中).html'>Next</a> >> 每周筆記(期中)</div>
+<p><a href="https://nfu.cycu.org/?semester=1111&amp;courseno=0747&amp;column=True">1a 計算機程式修課學員名單</a><span> </span>(取自教務主機)</p>
+<p></p>
+<p></p>
+<p></p><br />w3 << <a href='w3.html'>Previous</a> <a href='w4.html'>Next</a> >> w4</div>
         
     <!-- footer -->
       <div class="container">
