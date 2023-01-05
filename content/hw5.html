@@ -2,7 +2,7 @@
         <head>
         <title>cmsite</title>
         <meta charset="utf-8">
-<meta property="head" content="H1">
+<meta property="head" content="H2">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
@@ -141,9 +141,29 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">評分標準 << <a href='評分標準.html'>Previous</a> <a href='w1.html'>Next</a> >> w1<br /><h1>每周筆記(期中)</h1>
-<p>記錄每一週計算機程式，我的狀況記錄</p>
-<br />評分標準 << <a href='評分標準.html'>Previous</a> <a href='w1.html'>Next</a> >> w1</div>
+    <div id="tipue_search_content">HW << <a href='HW.html'>Previous</a> <a href='hw6.html'>Next</a> >> hw6<br /><h1>hw5</h1>
+<p></p>
+<p><a href="https://mdecp2022.github.io/site-40923102/content/Brython.html?src=https://gist.githubusercontent.com/40923102/157d32377f9f7121ec3849085c811e55/raw/5b9ddede5e45b2c66df5dee77c935a68ae2c980f/hw5">結果</a></p>
+<p></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 導入亂數模組
+import random
+# 導入字串模組
+import string
+# 利用 def 關鍵字定義函式
+# 函式的輸入變數可以設定初始值
+def password_generator(size=4, chars=string.ascii_lowercase + string.digits):
+    # 函式內以多行註解說明函式功能
+    """Generate random password
+    """
+    # 利用 return 關鍵字將所產生的亂數字串傳回
+    return ''.join(random.choice(chars) for _ in range(size))
+# 建立一個變數與隨後的字串對應
+pass_string = "abcdefghkmnpqrstuwxyz123456789"
+# 利用重複迴圈呼叫 password_generator() 函式 10 次
+for i in range(10):
+    print(password_generator(4, pass_string))</pre>
+<p></p>
+<br />HW << <a href='HW.html'>Previous</a> <a href='hw6.html'>Next</a> >> hw6</div>
         
     <!-- footer -->
       <div class="container">
