@@ -747,8 +747,33 @@ for i in range(10):
     print(password_generator(4, pass_string))</pre>
 <p></p>
 <h2>hw6</h2>
-<p></p>
-<h2>hw10</h2>
+<p>班級名單</p>
+<p><a href="https://mdecp2022.github.io/site-40923102/content/Brython.html?src=https://gist.githubusercontent.com/40923102/a4ee8accc6629eab0a0eb3d2765ea535/raw/05c10cb61f622a753a1bfad6c88376836907505e/hw6">結果</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import document, html
+   
+brython_div1 = document["brython_div1"]
+"""
+brython_div1 &lt;= html.BUTTON("hello")
+brython_div1 &lt;= html.BR()
+brython_div1 &lt;= html.A("google", href="https://google.com")
+"""
+   
+url = "https://mde.tw/studlist/2022fall/1a.txt"
+data = open(url).read().split("\n")
+mdecp2022 = "https://mdecp2022.github.io/site-"
+data = data[1:-1]
+for i in data:
+    stud = i.split("\t")
+    stud_num = stud[0]
+    github_acc = stud[1]
+    #print(stud_num, github_acc)
+    if github_acc == "":
+        github_acc = stud_num
+    site = mdecp2022 + github_acc
+    link = html.A(stud_num, href=site)
+    brython_div1 &lt;= link
+    brython_div1 &lt;= html.BR()</pre>
+<p></p><h2>hw10</h2>
 <h2>hw11</h2>
 <h2>hw12</h2>
 <h2>hw13</h2>

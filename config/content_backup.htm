@@ -525,7 +525,7 @@ print(cp_score)</pre>
 </div>
 <h2>W15</h2>
 <p></p>
-<p></p>
+<div>2D 動態繪圖練習</div>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 這個程式用於 demo 綠色方塊沿著特定網格路徑行走
 # 從 Brython 程式庫中的 browser 模組導入 document 類別, 並以簡寫設定為 doc
 from browser import document as doc
@@ -694,8 +694,10 @@ ycoord = randint(1, hnum)
 draw_rect(xcoord, ycoord, wrect_size, hrect_size, color="red")
 '''
 browser.timer.set_interval(game, 100)</pre>
-<p><br/><br/>w16</p>
-<p>檢查每個人的倉儲並統計推送次數及作業完成度</p>
+<p></p>
+<h2>w16</h2>
+<p>(1)考試</p>
+<p>(2)檢查每個人的倉儲並統計推送次數及作業完成度</p>
 <h2>w17</h2>
 <p>第一次上台報告，並補充倉儲</p>
 <h2>w18</h2>
@@ -745,8 +747,33 @@ for i in range(10):
     print(password_generator(4, pass_string))</pre>
 <p></p>
 <h2>hw6</h2>
-<p></p>
-<h2>hw10</h2>
+<p>班級名單</p>
+<p>結果</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import document, html
+   
+brython_div1 = document["brython_div1"]
+"""
+brython_div1 &lt;= html.BUTTON("hello")
+brython_div1 &lt;= html.BR()
+brython_div1 &lt;= html.A("google", href="https://google.com")
+"""
+   
+url = "https://mde.tw/studlist/2022fall/1a.txt"
+data = open(url).read().split("\n")
+mdecp2022 = "https://mdecp2022.github.io/site-"
+data = data[1:-1]
+for i in data:
+    stud = i.split("\t")
+    stud_num = stud[0]
+    github_acc = stud[1]
+    #print(stud_num, github_acc)
+    if github_acc == "":
+        github_acc = stud_num
+    site = mdecp2022 + github_acc
+    link = html.A(stud_num, href=site)
+    brython_div1 &lt;= link
+    brython_div1 &lt;= html.BR()</pre>
+<p></p><h2>hw10</h2>
 <h2>hw11</h2>
 <h2>hw12</h2>
 <h2>hw13</h2>
