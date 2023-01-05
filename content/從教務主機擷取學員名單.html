@@ -143,7 +143,7 @@ img.add_border {
         </header>
     <div id="tipue_search_content">w3 << <a href='w3.html'>Previous</a> <a href='w4.html'>Next</a> >> w4<br /><h1>從教務主機擷取學員名單</h1>
 <p>原先配置在 Heroku 的 [nfulist] 網際程式, 由於校務主機已經排除台灣境外網段連接, 且 Heroku 也即將終止免費帳號使用. 因此只能將程式配置在系工作站室中的電腦. 程式如下, 目前以 Ubuntu 22.04 實體主機下的 Virtualbox Win10 虛擬主機運行. 採<span> </span><a href="https://github.com/Pylons/waitress">waitress</a><span> </span>模式配置, 以<span> </span><a href="https://nssm.cc/">nssm</a><span> </span>安排成為系統服務.</p>
-<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false"># 以 Flask 作為網際框架, 
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 以 Flask 作為網際框架, 
 from flask import Flask, request
 # 允許跨網站擷取資料
 from flask_cors import CORS
