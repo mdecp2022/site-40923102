@@ -498,6 +498,31 @@ cp_stud = cpb_w14.get_stud()
 cp_score = cpb_w14.get_score()
 print(cp_score)</pre>
 <div></div>
+<div>
+<h3>網路與倉儲問題</h3>
+<div>
+<div>上課時電腦只能連接 IPv6 網路協定 (為了取得最大連外頻寬), 若 Firefox 瀏覽器 在不設定 Proxy 的情況下, 可以直接連接到 Youtube, Google 等網站, 因為這些網站已經支援 IPv6 網路協定.</div>
+<div></div>
+<div>目前 github 對於網路協定的支援, 分為兩個部分:</div>
+<ol>
+<li>github.com 目前仍只支援 IPv4 網路協定</li>
+<li>github.io 用於 Github Pages 靜態網頁的部分已經支援 IPv6 (可以利用 Firefox 不設 Proxy, 連至 <a href="https://scrum-1.github.io" rel="noreferrer noopener" tabindex="-1" target="_blank" title="https://scrum-1.github.io/">https://scrum-1.github.io</a> 進行測試)</li>
+</ol>
+<div>由於使用者將倉儲資料改版內容, 以 git push 推送到 Github, 是經由 github.com 網址, 因為截至目前 github.com 仍只支援 IPv4, 因此若使用者在支援 IPv4 的網路環境中, 執行 git 指令, 無論是使用 https 或 ssh 都不需要設定 Proxy. 但若在只支援 IPv6 的網路環境中 (如上課階段的電腦輔助設計室) 使用任何協定都必須考慮是否該設定 Proxy.</div>
+<div></div>
+<div>許多人在使用電腦時, 都習館使用"自動設定", 通常只求能夠上網, 於是就忽略充分了解電腦連接網路的細節, 導致在執行 git 命令時, 出現許多問題.</div>
+<div></div>
+<div>首先必須強調, git 執行若發生問題, 命令列中都會出現問題說明或提示, 每位學員一定要仔細了解這些錯誤訊息內容, 以便針對問題加以解決.</div>
+<div></div>
+<div>想要知道目前電腦網路設定細節, 最有效的方式就是在命令列視窗中輸入 ipconfig /all</div>
+<div></div>
+<div>ipconfig 指令總共包含三個英文單字: internet protocol configuration</div>
+<div></div>
+<div>internet 是網際網路, 也就是 inter network 的意思, 是橫跨各種網路協定中最通使用 TCP/IP 協定的網路架構.</div>
+</div>
+<p></p>
+<p></p>
+</div>
 <h2>W15</h2>
 <p></p>
 <p></p>
